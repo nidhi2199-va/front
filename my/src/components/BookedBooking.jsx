@@ -667,7 +667,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
-
+import bgImage from "/src/components/image/m5.jpg";
 const BookedBooking = () => {
   const [bookedMeetings, setBookedMeetings] = useState([]);
   const [searchDate, setSearchDate] = useState("");
@@ -770,7 +770,8 @@ const BookedBooking = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-gray-100 p-8" style={{ backgroundImage: `url(${bgImage})` }}
+    >
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold text-gray-800">Booked Meetings</h1>
         <button
@@ -790,7 +791,7 @@ const BookedBooking = () => {
         />
         <input
           type="text"
-          placeholder="Search by Room Name"
+          placeholder="Search Room Name"
           className="p-2 border rounded-lg"
           value={searchRoom}
           onChange={(e) => setSearchRoom(e.target.value)}
