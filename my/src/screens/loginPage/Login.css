@@ -1,0 +1,182 @@
+/* body{
+    background:  url('/Users/userongrid/Downloads/g/my/src/components/image/m2.jpg');
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}  */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: #f8f9fa;
+    background:  url('/Users/userongrid/Downloads/g/my/src/components/image/m2.jpg');
+    height: 100vh;
+    width: 100%;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}
+
+/* MeetEase animated text */
+.meetease {
+    font-size: 50px;
+    font-weight: bold;
+    color: #9fb90b;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Bounce animation */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+h4{
+    font-family: 'Blobby'; /* Applying Poppins font */
+  font-size: 2rem; /* Adjust font size */
+  font-weight: 600; /* Slightly bold */
+  color: #5A3D5C; /* Fancy color */
+  letter-spacing: 1px; /* Add some space between letters */
+  text-align: center; /* Optional: center the text */
+}
+
+form{
+    display: inline-block;
+    align-items: center;
+    height: 170px;
+    width: 350px;
+    margin-bottom: 170px;
+}
+.text_area {
+    display: flex; /* Use flexbox for better alignment */
+    align-items: center; /* Center input and icon vertically */
+    padding: 10px; /* Add some padding */
+    
+    border-radius: 22px;
+    margin-bottom: 25px; /* Slightly reduced margin for better spacing */
+    
+    width: 100%;
+    height: 58px; /* Slightly reduced height for a sleek design */
+    
+    background: #fff; /* Ensure a clean white background */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Softer shadow for modern look */
+    
+    transition: box-shadow 0.3s ease-in-out; /* Smooth transition effect */
+}
+
+/* Add hover effect */
+.text_area:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Style for the input inside text_area */
+.text_area input {
+    flex: 1; /* Allow input to take remaining space */
+    border: none; /* Remove default border */
+    outline: none; /* Remove default outline */
+    font-size: 16px; /* Adjust font size */
+    padding: 10px; /* Add some padding */
+}
+
+/* Style for the icon inside text_area */
+.text_area .icon {
+    color: #555; /* Neutral color for the icon */
+    margin-right: 10px; /* Spacing between icon and input */
+    font-size: 20px; /* Adjust icon size */
+}
+
+.btn{
+    margin-top: 28px;
+    width: 165px;
+    height: 60px;
+    border-radius: 30px;
+    background: #B58DED;
+    border: none;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    color: #ffffff;
+    box-shadow: 0 4px 8px 0 rgba(181, 141, 237, 0.7), 0 6px 20px 0 rgba(181, 141, 237, 0.9);
+    cursor: pointer;
+}
+
+.login {
+    display: flex; /* Align content properly */
+    flex-direction: column; /* Stack elements inside */
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    
+    background: rgba(253, 244, 248, 0.9); /* Slightly more visible */
+    width: 400px; /* Slightly reduced for better form fit */
+    height: 650px; /* Adjusted height */
+    
+    margin: 5% auto; /* Center horizontally */
+    padding: 20px; /* Added padding for spacing */
+    
+    border-radius: 25px; /* Slightly rounder edges */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 
+                0 8px 24px rgba(0, 0, 0, 0.19);
+    
+    transition: all 0.3s ease-in-out; /* Smooth transition */
+}
+
+/* Add hover effect for modern feel */
+.login:hover {
+    transform: translateY(-5px); /* Slight lift effect */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 
+                0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+
+.link{
+    color: #0E4579;
+    font-family: 'Montserrat light';
+    font-size: 18px;
+    cursor: pointer;
+    display: block;
+    text-decoration: none;
+}
+/* Add this to your login.css */
+.error-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.25rem; /* Adjust size for better readability */
+    font-family: 'Poppins'; /* Or choose a more "blobby" font */
+    font-weight: 600; /* Slightly bold to make it more noticeable */
+    text-transform: uppercase; /* Optional for a stylish look */
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+  }
+  
+  /* Success message with blobby effect */
+  .error-message.success {
+    background-color: #d4edda;
+    color: #0a1404; /* Pink text color */
+    border: 1px solid #c3e6cb;
+    text-shadow: 2px 2px 5px rgba(255, 255, 255, 0.6); /* Pink glow effect */
+  }
+  
+  /* Error message with blobby effect */
+  .error-message.error {
+    background-color: #f8d7da;
+    color: #ff007f; /* Pink text color */
+    border: 1px solid #f5c6cb;
+    text-shadow: 2px 2px 5px rgba(255, 0, 127, 0.6); /* Pink glow effect */
+  }
+  
+  /* Optional hover effect to give a blobby feel */
+  .error-message:hover {
+    transform: scale(1.05); /* Slightly enlarge the message on hover */
+    box-shadow: 0 4px 10px rgba(255, 0, 127, 0.3); /* Soft shadow on hover */
+  }
+  
