@@ -8,7 +8,7 @@
 // import AdminDashboard from "./components/AdminDashboard";
 // // Mock Auth Function (Replace with actual authentication)
 
-// function App() {
+// function App() { 
 //   return (
 //     <Router>
 //       <Routes>
@@ -34,4 +34,4 @@ const App = () => {
   return <AppRouter />;
 };
 
-export default App
+export default App;

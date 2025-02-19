@@ -13,7 +13,7 @@
     justify-content: center;
     height: 100vh;
     background: #f8f9fa;
-    background:  url('/Users/userongrid/Downloads/g/my/src/components/image/m2.jpg');
+    background:  url('../../assets/images/m11.jpg');
     height: 100vh;
     width: 100%;
     text-align: center;
@@ -25,23 +25,16 @@
 .meetease {
     font-size: 50px;
     font-weight: bold;
-    color: #9fb90b;
-    margin-bottom: 20px;
+    color: #0e0e0b;
+    margin-top: 40px;;
+   
     text-align: center;
 }
 
-/* Bounce animation */
-@keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
-}
 
-h4{
-    font-family: 'Blobby'; /* Applying Poppins font */
+
+.login-h4{
+   font-family: 'Blobby'; /* Applying Poppins font */
   font-size: 2rem; /* Adjust font size */
   font-weight: 600; /* Slightly bold */
   color: #5A3D5C; /* Fancy color */
@@ -49,7 +42,7 @@ h4{
   text-align: center; /* Optional: center the text */
 }
 
-form{
+.login-form{
     display: inline-block;
     align-items: center;
     height: 170px;

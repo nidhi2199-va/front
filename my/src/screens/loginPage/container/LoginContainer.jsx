@@ -36,7 +36,7 @@ class LoginContainer extends Component {
 
         // Redirect based on role
         if (response.role === "USER") {
-          this.props.navigate("/userdashboard"); // Use navigate from props
+          this.props.navigate("/dashboard"); // Use navigate from props
         } else {
           this.props.navigate("/admindashboard"); // Use navigate from props
         }

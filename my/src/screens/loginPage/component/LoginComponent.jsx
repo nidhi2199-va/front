@@ -13,9 +13,9 @@ const LoginComponent = ({
     <div className="login-container">
       <h1 className="meetease">MeetEase</h1>
       <div className="login">
-        <h4>Login</h4>
+        <h4 className="login-h4">Login</h4>
 
-        <form onSubmit={handleSubmit}>
+        <form className="login-form" onSubmit={handleSubmit}>
           <div className="text_area">
             <i className="fas fa-user icon"></i>
             <input
@@ -59,10 +59,13 @@ const LoginComponent = ({
             </div>
           )}
         </form>
-
+{/* 
         <p className="link" onClick={() => navigate("/signup")}>
           New User? Sign Up
-        </p>
+        </p> */}
+        <span className="link" onClick={() => (window.location.href = "/signup")}>
+            New User? Sign Up
+        </span>
       </div>
     </div>
   );

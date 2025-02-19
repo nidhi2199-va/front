@@ -1,3 +1,2 @@
-import UserDashboardContainer from "./container/UserDashboardContainer";
-
+import UserDashboardContainer from "./container";
 export default UserDashboardContainer;
