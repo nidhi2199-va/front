@@ -156,7 +156,7 @@
     box-shadow: 0 4px 10px rgba(255, 0, 127, 0.3); /* Soft shadow on hover */
   }
   
-  login-redirect {
+  .login-redirect {
     color: #007bff;
     cursor: pointer;
     font-weight: bold;

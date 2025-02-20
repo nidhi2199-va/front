@@ -1,9 +1,9 @@
 import React from "react";
 import { Outlet } from "react-router-dom";
-
-const PublicLayout = () => {
+import PublicLayout from "./PublicLayouts";
+const PrivateLayout = () => {
   return (
-    <div className="public-layout">
+    <div className="private-layout">
       <Outlet /> {/* This will render the public pages */}
     </div>
   );

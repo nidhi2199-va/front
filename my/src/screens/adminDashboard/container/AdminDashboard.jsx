@@ -685,7 +685,7 @@
 
 // export default AdminDashboard;
 import React, { Component } from "react";
-import { fetchMeetingRooms, createRoom, updateRoom, deleteRoom } from "../../../utils/api";
+import { fetchMeetingRooms, createRoom, updateRoom, deleteRoom } from "../../../shared/utils/api";
 import AdminDashboardComponent from "../component/AdminDashboardComponent";
 
 class AdminDashboard extends Component {

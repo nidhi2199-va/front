@@ -525,14 +525,7 @@ const AvailableRoomsComponent = ({
 }) => {
   return (
     <div
-      className="min-h-screen bg-gray-100"
-      style={{
-        backgroundImage: `url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
-      }}
-    >
+      className="min-h-screen bg-gray-100 bg-cover bg-center" style={{ backgroundImage: `url(${bgImage})` }}>
       {/* Navbar */}
       <div className="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg fixed z-50">
         <h1 className="text-2xl font-bold">MeetEase</h1>

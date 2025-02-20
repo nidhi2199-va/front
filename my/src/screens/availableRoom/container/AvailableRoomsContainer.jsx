@@ -354,8 +354,8 @@
 import React, { Component } from "react";
 import { useNavigate, useLocation } from "react-router-dom"; // Hooks from React Router v6
 import AvailableRoomsComponent from "../component/AvailableRoomsComponent";
-import { bookRoom } from "../../../utils/api"; // Import the bookRoom function
-
+import { bookRoom } from "../../../shared/utils/api"; // Import the bookRoom function
+import {toast} from "react-hot-toast"
 class AvailableRoomsContainer extends Component {
   constructor(props) {
     super(props);
@@ -382,7 +382,7 @@ class AvailableRoomsContainer extends Component {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Unauthorized: Please login first.");
+        toast.error("Unauthorized: Please login first.");
         navigate("/login");
         return;
       }
@@ -394,9 +394,9 @@ class AvailableRoomsContainer extends Component {
         availableRooms: prevState.availableRooms.filter((room) => room.id !== roomId),
       }));
 
-      alert("Room booked successfully!");
+      toast.success("Room booked successfully!");
     } catch (error) {
-      console.error("Error booking room:", error);
+     
       alert("Failed to book room. Please try again.");
     }
   };

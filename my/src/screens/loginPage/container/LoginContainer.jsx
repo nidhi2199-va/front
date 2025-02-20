@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { useNavigate } from "react-router-dom"; // Use useNavigate instead of withRouter
-import { login } from "../../../utils/api"; // Import the login service
+import { login } from "../../../shared/utils/api"; // Import the login service
 import LoginComponent from "../component/LoginComponent"; // Import UI component
+import {toast} from "react-hot-toast"
 
 class LoginContainer extends Component {
   constructor(props) {
@@ -36,8 +37,10 @@ class LoginContainer extends Component {
 
         // Redirect based on role
         if (response.role === "USER") {
+          toast.success("Hello!!! user")
           this.props.navigate("/dashboard"); // Use navigate from props
         } else {
+          toast.success("Hello!!! admin")
           this.props.navigate("/admindashboard"); // Use navigate from props
         }
       } else {

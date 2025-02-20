@@ -9,4 +9,4 @@ const PrivateLayout = () => {
   );
 };
 
-export default PublicLayout;
+export default PrivateLayout;

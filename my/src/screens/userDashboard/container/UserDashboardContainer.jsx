@@ -182,7 +182,7 @@
 // export default UserDashboardContainerWrapper;
 import React, { Component } from "react";
 import { useNavigate } from "react-router-dom";
-import { fetchAvailableRooms, fetchAllRooms ,fetchCompletedBookings} from "../../../utils/api";
+import { fetchAvailableRooms, fetchAllRooms ,fetchCompletedBookings} from "../../../shared/utils/api";
 import UserDashboard from "../component/UserDashboard";
 
 class UserDashboardContainer extends Component {
@@ -214,6 +214,13 @@ class UserDashboardContainer extends Component {
     }
   };
 
+  convertToIST = (date) => {
+    const istOffset = 5.5 * 60 * 60 * 1000; // 5 hours 30 minutes in ms
+    const istDate = new Date(date.getTime() + istOffset);
+    
+    return istDate.toISOString().split(".")[0]; // Removes milliseconds and 'Z'
+  };
+
   fetchAvailableRooms = async () => {
     const { selectedDate, startTime, endTime } = this.state;
     if (!selectedDate || !startTime || !endTime) {
@@ -232,14 +239,26 @@ class UserDashboardContainer extends Component {
       return;
     } 
     
-      
+    const startTimeArr = startTime.split(":");
+    const endTimeArr = endTime.split(":");
+    const formattedStartTime = new Date(selectedDate);
+    formattedStartTime.setHours(startTimeArr[0]);
+    formattedStartTime.setMinutes(startTimeArr[1]);
+    formattedStartTime.setSeconds(0);
+    formattedStartTime.setMilliseconds(0);
 
-    const formattedStartTime = `${selectedDate.toISOString().split("T")[0]}T${startTime}:00`;
-    const formattedEndTime = `${selectedDate.toISOString().split("T")[0]}T${endTime}:00`;
 
+    const formattedEndTime =  new Date(selectedDate);
+    formattedEndTime.setHours(endTimeArr[0]);
+    formattedEndTime.setMinutes(endTimeArr[1]);
+    formattedEndTime.setSeconds(0);
+    formattedEndTime.setMilliseconds(0);
+    const startTimeFormatted = this.convertToIST(formattedStartTime);
+    const endTimeFormatted = this.convertToIST(formattedEndTime);
     try {
       // Fetch available room IDs
-      const availableRoomIds = await fetchAvailableRooms(formattedStartTime, formattedEndTime);
+     // .toISOString()
+      const availableRoomIds = await fetchAvailableRooms(startTimeFormatted, endTimeFormatted);
 
       // Fetch all rooms to filter the available ones
       const allRooms = await fetchAllRooms();
@@ -254,7 +273,7 @@ class UserDashboardContainer extends Component {
 
       // Navigate to the available rooms page with the necessary state
       this.props.navigate("/available-rooms", {
-        state: { startTime: formattedStartTime, endTime: formattedEndTime, availableRooms: filteredRooms },
+        state: { startTime: startTimeFormatted, endTime: endTimeFormatted, availableRooms: filteredRooms },
       });
     } catch (error) {
       console.error("Error fetching available rooms", error);
