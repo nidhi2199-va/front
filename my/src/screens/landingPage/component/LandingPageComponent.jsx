@@ -14,7 +14,7 @@ const LandingPageComponent = () => {
                 <div>
                     <button
                         onClick={() => navigate("/login")}
-                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition mr-4"
+                        className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"
                     
                     >
                         Login
@@ -30,11 +30,11 @@ const LandingPageComponent = () => {
 
             {/* Main Content */}
             {/* Main Content */}
-            <main className="flex-grow flex flex-col items-center justify-center text-center p-4">
+            <main className="flex-grow flex flex-col  justify-center p-4">
                 <h2 className="text-4xl font-extrabold text-gray-800 mb-4 mt-[-500px]">
                     Welcome to MeetEase
                 </h2>
-                <p className="text-lg text-gray-600 max-w-2xl mt-4"> {/* Added mt-4 here */}
+                <p className="text-lg text-gray-1000 max-w-2xl mt-4"> {/* Added mt-4 here */}
     <h3 className="text-2xl font-semibold text-gray-700 mb-2 mt-4">
       MeetEase – Where your next great meeting begins!!
     </h3>

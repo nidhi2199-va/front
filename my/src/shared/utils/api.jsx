@@ -559,5 +559,13 @@ export const fetchMeetingRooms = async () => {
     throw new Error("Failed to fetch meeting rooms. Please try again.");
   }
 };
+export const fetchBookings = async () => {
+  try {
+    const response = await api.get("/bookings/all-booking"); // Replace with your API endpoint
+    return response; // Return the created room
+  } catch (error) {
+    throw new Error("Failed to fetch meeting rooms. Please try again.");
+  }
+};
 
 export default api;

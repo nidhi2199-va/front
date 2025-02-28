@@ -1,7 +1,7 @@
 
-// import { lazy } from "react";
+import { lazy } from "react";
 
-// const Private = lazy(() => import("./container/Private"));
+const Private = lazy(() => import("./container/Private"));
 
-// export default Private;
+export default Private;
 

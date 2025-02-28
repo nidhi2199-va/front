@@ -195,7 +195,7 @@ class UserDashboardContainer extends Component {
       endTime: "",
       rooms: [],
       completedBookings: [],
-      showCompleted: false,
+      showCompleted: true,
     };
   }
 

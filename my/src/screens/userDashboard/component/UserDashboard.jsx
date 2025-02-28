@@ -1,72 +1,715 @@
 
 // export default UserDashboard;
-import { FaCalendarAlt, FaClock } from 'react-icons/fa';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
-import { useNavigate } from 'react-router-dom';
+// import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { useNavigate } from 'react-router-dom';
+// import bgImage from "../../../assets/images/m11.jpg";
+// const UserDashboard = ({
+//   viewBookings,
+//   selectedDate,
+//   startTime,
+//   endTime,
+//   completedBookings,
+//   showCompleted,
+//   onViewBookingsChange,
+//   onDateChange,
+//   onStartTimeChange,
+//   onEndTimeChange,
+//   onShowCompletedChange,
+//   onSignOut,
+//   onFetchCompletedBookings,
+//   onFetchAvailableRooms,
+// }) => {
+//   const navigate = useNavigate();
+
+//   const handleShowCompletedChange = () => {
+//     onShowCompletedChange(!showCompleted);
+//     if (!showCompleted) {
+//       onFetchCompletedBookings();
+//     }
+//   };
+
+
+//   const handleViewBookedBookings = () => {
+//     navigate("/booked-booking");
+//   };
+
+//   return (
+//     <div className="flex min-h-screen bg-gray-100" style={{
+//       backgroundImage: `url(${bgImage})`,
+//       backgroundSize: 'cover', // Ensures the image covers the entire container
+//       backgroundPosition: 'center', // Centers the image
+//       backgroundRepeat: 'no-repeat', // Prevents the image from repeating
+//     }}>
+//       {/* Sidebar */}
+//       <div className="w-1/4 bg-gray-900 text-white p-6 flex flex-col space-y-4 min-h-screen fixed top-0 left-0 mt-6">
+//         {/* Sidebar Title */}
+//         {/* <h2 className="text-2xl font-bold mb-8 mt-10 justify-between items-center ">User Dashboard</h2> */}
+//         <h2 className="text-2xl font-bold mb-8 mt-10 text-center py-4">Welcome to UserDashboard!!</h2>
+//         {/* Action Buttons */}
+//         <button
+//           onClick={() => onViewBookingsChange(false)}
+//           className={`py-2 px-4 rounded transition ${!viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+//             }`}
+//         >
+//           Book a Room
+//         </button>
+//         <button
+//           onClick={() => onViewBookingsChange(true)}
+//           className={`py-2 px-4 rounded transition ${viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+//             }`}
+//         >
+//           View My Bookings
+//         </button>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="flex-1 ml-[25%] p-6">
+//         {/* Header */}
+//         <div className="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg fixed top-0 left-0 right-0 z-40">
+//           <h1 className="text-2xl font-bold">MeetEase</h1>
+//           <button
+//             className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+//             onClick={onSignOut}
+//           >
+//             Sign Out
+//           </button>
+//         </div>
+
+//         {/* Main Content Area */}
+//         <div className="flex-1 p-6 mt-16">
+//           {viewBookings ? (
+//             // View Bookings Section
+//             <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">My Booking History</h1>
+//               <div className="flex justify-center space-x-4 my-4">
+//                 <button
+//                   onClick={handleShowCompletedChange}
+//                   className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+//                 >
+//                   {showCompleted ? "Hide Completed Bookings" : "View Completed Bookings"}
+//                 </button>
+//                 <button
+//                   onClick={handleViewBookedBookings}
+//                   className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
+//                 >
+//                   View Booked Bookings
+//                 </button>
+//               </div>
+//               {showCompleted && (
+//                 <table className="w-full border-collapse border border-gray-300 mt-4">
+//                   <thead>
+//                     <tr className="bg-gray-200">
+//                       <th className="border p-2">Room Name</th>
+//                       <th className="border p-2">Date</th>
+//                       <th className="border p-2">Start Time</th>
+//                       <th className="border p-2">End Time</th>
+//                       <th className="border p-2">Status</th>
+//                     </tr>
+//                   </thead>
+//                   <tbody>
+//                     {/* {completedBookings
+//                       .filter((booking) => (booking.status === "COMPLETED" ||( booking.status == "BOOKED" && booking.endTime < new Date(Date.now()).toISOString().slice(0, 19))
+//                       .map((booking) => (
+//                         <tr key={booking.id} className="text-center">
+//                           <td className="border p-2">{booking.roomName}</td>
+//                           <td className="border p-2">{booking.startTime.split("T")[0]}</td>
+//                           <td className="border p-2">{booking.startTime.split("T")[1]}</td>
+//                           <td className="border p-2">{booking.endTime.split("T")[1]}</td>
+//                           <td className="border p-2 bg-green-500 text-white">{booking.status}</td>
+//                         </tr>
+//                       ))} */}
+//                     {completedBookings
+//                       .filter((booking) => {
+//                         const endTime = new Date(booking.endTime);
+//                         const now = new Date();
+                    
+//                         return (
+//                           booking.status === "COMPLETED" ||
+//                           (booking.status === "BOOKED" && endTime < now)
+//                         );
+//                       })
+//                       .map((booking) => (
+//                         <tr key={booking.id} className="text-center">
+//                           <td className="border p-2">{booking.roomName}</td>
+//                           <td className="border p-2">{booking.startTime.split("T")[0]}</td>
+//                           <td className="border p-2">{booking.startTime.split("T")[1]}</td>
+//                           <td className="border p-2">{booking.endTime.split("T")[1]}</td>
+//                           <td className="border p-2 bg-green-500 text-white">COMPLETED</td>
+//                         </tr>
+//                       ))}
+//                   </tbody>
+//                 </table>
+//               )}
+//             </div>
+//           ) : (
+//             // Book a Room Section
+//             <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Book a Room</h1>
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//                 {/* Calendar Section */}
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaCalendarAlt className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">Select Date</h2>
+//                   </div>
+//                   <DatePicker
+//                     selected={selectedDate}
+//                     onChange={onDateChange}
+//                     dateFormat="yyyy-MM-dd"
+//                     minDate={new Date()}
+//                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                     placeholderText="Choose a date"
+//                   />
+//                 </div>
+
+//                 {/* Time Slot Section */}
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaClock className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">Select Time Slot</h2>
+//                   </div>
+//                   <div className="space-y-4">
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">Start Time</label>
+//                       <input
+//                         type="time"
+//                         value={startTime}
+//                         onChange={(e) => onStartTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">End Time</label>
+//                       <input
+//                         type="time"
+//                         step="any"
+//                         value={endTime}
+//                         onChange={(e) => onEndTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* Submit Button */}
+//               <div className="mt-8 flex justify-center">
+//                 <button
+//                   onClick={onFetchAvailableRooms}
+//                   className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+//                 >
+//                   Find Available Rooms
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserDashboard;
+// import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { useNavigate } from 'react-router-dom';
+// import bgImage from "../../../assets/images/m11.jpg";
+
+// const UserDashboard = ({
+//   viewBookings,
+//   selectedDate,
+//   startTime,
+//   endTime,
+//   completedBookings,
+//   showCompleted,
+//   onViewBookingsChange,
+//   onDateChange,
+//   onStartTimeChange,
+//   onEndTimeChange,
+//   onShowCompletedChange,
+//   onSignOut,
+//   onFetchCompletedBookings,
+//   onFetchAvailableRooms,
+// }) => {
+//   const navigate = useNavigate();
+
+//   const handleShowCompletedChange = () => {
+//     onShowCompletedChange(!showCompleted);
+//     if (!showCompleted) {
+//       onFetchCompletedBookings();
+//     }
+//   };
+
+//   const handleViewBookedBookings = () => {
+//     navigate("/booked-booking");
+//   };
+
+//   return (
+//     <div
+//       className="flex min-h-screen bg-gray-100"
+//       style={{
+//         backgroundImage: `url(${bgImage})`,
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat",
+//       }}
+//     >
+//       {/* Sidebar */}
+//       <div className="w-1/4 bg-gray-900 text-white p-6 flex flex-col space-y-4 min-h-screen fixed top-0 left-0 mt-6">
+//         <h2 className="text-2xl font-bold mb-8 mt-10 text-center py-4">
+//           Welcome to UserDashboard!!
+//         </h2>
+
+//         {/* Buttons */}
+//         <button
+//           onClick={() => onViewBookingsChange(false)}
+//           className={`py-2 px-4 rounded transition ${
+//             !viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+//           }`}
+//         >
+//           Book a Room
+//         </button>
+//         <button
+//           onClick={() => onViewBookingsChange(true)}
+//           className={`py-2 px-4 rounded transition ${
+//             viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+//           }`}
+//         >
+//           View My Bookings
+//         </button>
+
+//         {/* New Buttons */}
+//         <button
+//           onClick={handleShowCompletedChange}
+//           className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 transition duration-300"
+//         >
+//           {showCompleted ? "Hide Completed Bookings" : "View Completed Bookings"}
+//         </button>
+
+//         <button
+//           onClick={handleViewBookedBookings}
+//           className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 transition duration-300"
+//         >
+//           View Booked Bookings
+//         </button>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="flex-1 ml-[25%] p-6">
+//         <div className="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg fixed top-0 left-0 right-0 z-40">
+//           <h1 className="text-2xl font-bold">MeetEase</h1>
+//           <button
+//             className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+//             onClick={onSignOut}
+//           >
+//             Sign Out
+//           </button>
+//         </div>
+
+//         <div className="flex-1 p-6 mt-16">
+//           {viewBookings ? (
+//             <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+//                 My Booking History
+//               </h1>
+
+//               {showCompleted && (
+//                 <table className="w-full border-collapse border border-gray-300 mt-4">
+//                   <thead>
+//                     <tr className="bg-gray-200">
+//                       <th className="border p-2">Room Name</th>
+//                       <th className="border p-2">Date</th>
+//                       <th className="border p-2">Start Time</th>
+//                       <th className="border p-2">End Time</th>
+//                       <th className="border p-2">Status</th>
+//                     </tr>
+//                   </thead>
+//                   <tbody>
+//                     {completedBookings
+//                       .filter((booking) => {
+//                         const endTime = new Date(booking.endTime);
+//                         const now = new Date();
+//                         return (
+//                           booking.status === "COMPLETED" ||
+//                           (booking.status === "BOOKED" && endTime < now)
+//                         );
+//                       })
+//                       .map((booking) => (
+//                         <tr key={booking.id} className="text-center">
+//                           <td className="border p-2">{booking.roomName}</td>
+//                           <td className="border p-2">
+//                             {booking.startTime.split("T")[0]}
+//                           </td>
+//                           <td className="border p-2">
+//                             {booking.startTime.split("T")[1]}
+//                           </td>
+//                           <td className="border p-2">
+//                             {booking.endTime.split("T")[1]}
+//                           </td>
+//                           <td className="border p-2 bg-green-500 text-white">
+//                             COMPLETED
+//                           </td>
+//                         </tr>
+//                       ))}
+//                   </tbody>
+//                 </table>
+//               )}
+//             </div>
+//           ) : (
+//             <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+//                 Book a Room
+//               </h1>
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaCalendarAlt className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">
+//                       Select Date
+//                     </h2>
+//                   </div>
+//                   <DatePicker
+//                     selected={selectedDate}
+//                     onChange={onDateChange}
+//                     dateFormat="yyyy-MM-dd"
+//                     minDate={new Date()}
+//                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                     placeholderText="Choose a date"
+//                   />
+//                 </div>
+
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaClock className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">
+//                       Select Time Slot
+//                     </h2>
+//                   </div>
+//                   <div className="space-y-4">
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">
+//                         Start Time
+//                       </label>
+//                       <input
+//                         type="time"
+//                         value={startTime}
+//                         onChange={(e) => onStartTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">
+//                         End Time
+//                       </label>
+//                       <input
+//                         type="time"
+//                         step="any"
+//                         value={endTime}
+//                         onChange={(e) => onEndTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="mt-8 flex justify-center">
+//                 <button
+//                   onClick={onFetchAvailableRooms}
+//                   className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+//                 >
+//                   Find Available Rooms
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserDashboard;
+
+// import { FaCalendarAlt, FaClock } from 'react-icons/fa';
+// import DatePicker from 'react-datepicker';
+// import 'react-datepicker/dist/react-datepicker.css';
+// import { useNavigate } from 'react-router-dom';
+// import bgImage from "../../../assets/images/m11.jpg";
+
+// const UserDashboard = ({
+//   selectedDate,
+//   startTime,
+//   endTime,
+//   completedBookings,
+//   showCompleted,
+//   onDateChange,
+//   onStartTimeChange,
+//   onEndTimeChange,
+//   onShowCompletedChange,
+//   onSignOut,
+//   onFetchCompletedBookings,
+//   onFetchAvailableRooms,
+// }) => {
+//   const navigate = useNavigate();
+
+//   const handleShowCompletedChange = () => {
+//     onShowCompletedChange(true); // Ensures completed bookings are displayed
+//     onFetchCompletedBookings();
+//   };
+
+//   return (
+//     <div
+//       className="flex min-h-screen bg-gray-100"
+//       style={{
+//         backgroundImage: `url(${bgImage})`,
+//         backgroundSize: "cover",
+//         backgroundPosition: "center",
+//         backgroundRepeat: "no-repeat",
+//       }}
+//     >
+//       {/* Sidebar */}
+//       <div className="w-1/4 bg-gray-900 text-white p-6 flex flex-col space-y-4 min-h-screen fixed top-0 left-0 mt-6">
+//         <h2 className="text-2xl font-bold mb-8 mt-10 text-center py-4">
+//           Welcome to UserDashboard!!
+//         </h2>
+
+//         {/* Buttons */}
+//         <button
+//           onClick={() => onShowCompletedChange(false)}
+//           className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 transition duration-300"
+//         >
+//           Book a Room
+//         </button>
+
+//         <button
+//           onClick={handleShowCompletedChange}
+//           className="py-2 px-4 rounded bg-blue-500 hover:bg-blue-600 transition duration-300"
+//         >
+//           View Completed Bookings
+//         </button>
+//       </div>
+
+//       {/* Main Content */}
+//       <div className="flex-1 ml-[25%] p-6">
+//         <div className="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg fixed top-0 left-0 right-0 z-40">
+//           <h1 className="text-2xl font-bold">MeetEase</h1>
+//           <button
+//             className="bg-red-500 px-4 py-2 rounded hover:bg-red-600"
+//             onClick={onSignOut}
+//           >
+//             Sign Out
+//           </button>
+//         </div>
+
+//         <div className="flex-1 p-6 mt-16">
+//           {showCompleted ? (
+//             <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+//                 Completed Bookings
+//               </h1>
+
+//               {completedBookings.length > 0 ? (
+//                 <table className="w-full border-collapse border border-gray-300 mt-4">
+//                   <thead>
+//                     <tr className="bg-gray-200">
+//                       <th className="border p-2">Room Name</th>
+//                       <th className="border p-2">Date</th>
+//                       <th className="border p-2">Start Time</th>
+//                       <th className="border p-2">End Time</th>
+//                       <th className="border p-2">Status</th>
+//                     </tr>
+//                   </thead>
+//                   <tbody>
+//                     {completedBookings.map((booking) => (
+//                       <tr key={booking.id} className="text-center">
+//                         <td className="border p-2">{booking.roomName}</td>
+//                         <td className="border p-2">
+//                           {booking.startTime.split("T")[0]}
+//                         </td>
+//                         <td className="border p-2">
+//                           {booking.startTime.split("T")[1]}
+//                         </td>
+//                         <td className="border p-2">
+//                           {booking.endTime.split("T")[1]}
+//                         </td>
+//                         <td className="border p-2 bg-green-500 text-white">
+//                           COMPLETED
+//                         </td>
+//                       </tr>
+//                     ))}
+//                   </tbody>
+//                 </table>
+//               ) : (
+//                 <p className="text-center text-gray-500">No completed bookings found.</p>
+//               )}
+//             </div>
+//           ) : (
+//             <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
+//               <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+//                 Book a Room
+//               </h1>
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaCalendarAlt className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">
+//                       Select Date
+//                     </h2>
+//                   </div>
+//                   <DatePicker
+//                     selected={selectedDate}
+//                     onChange={onDateChange}
+//                     dateFormat="yyyy-MM-dd"
+//                     minDate={new Date()}
+//                     className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                     placeholderText="Choose a date"
+//                   />
+//                 </div>
+
+//                 <div className="space-y-6">
+//                   <div className="flex items-center space-x-4">
+//                     <FaClock className="text-2xl text-blue-500" />
+//                     <h2 className="text-xl font-semibold text-gray-700">
+//                       Select Time Slot
+//                     </h2>
+//                   </div>
+//                   <div className="space-y-4">
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">
+//                         Start Time
+//                       </label>
+//                       <input
+//                         type="time"
+//                         value={startTime}
+//                         onChange={(e) => onStartTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                     <div className="flex flex-col space-y-2">
+//                       <label className="text-gray-600 font-medium">
+//                         End Time
+//                       </label>
+//                       <input
+//                         type="time"
+//                         step="any"
+//                         value={endTime}
+//                         onChange={(e) => onEndTimeChange(e.target.value)}
+//                         className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+//                       />
+//                     </div>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="mt-8 flex justify-center">
+//                 <button
+//                   onClick={onFetchAvailableRooms}
+//                   className="bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+//                 >
+//                   Find Available Rooms
+//                 </button>
+//               </div>
+//             </div>
+//           )}
+//         </div>
+//       </div>
+//     </div>
+//   );
+// };
+
+// export default UserDashboard;
+import { FaCalendarAlt, FaClock } from "react-icons/fa";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import { useNavigate } from "react-router-dom";
 import bgImage from "../../../assets/images/m11.jpg";
+
 const UserDashboard = ({
-  viewBookings,
+  viewBookings = "book", // Default to "book"
   selectedDate,
   startTime,
   endTime,
   completedBookings,
-  showCompleted,
   onViewBookingsChange,
   onDateChange,
   onStartTimeChange,
   onEndTimeChange,
-  onShowCompletedChange,
   onSignOut,
   onFetchCompletedBookings,
   onFetchAvailableRooms,
 }) => {
   const navigate = useNavigate();
 
-  const handleShowCompletedChange = () => {
-    onShowCompletedChange(!showCompleted);
-    if (!showCompleted) {
-      onFetchCompletedBookings();
-    }
+  const handleViewCompletedBookings = () => {
+    onFetchCompletedBookings();
+    onViewBookingsChange("completed");
   };
 
-
   const handleViewBookedBookings = () => {
+    onViewBookingsChange("booked");
     navigate("/booked-booking");
   };
 
+  
+
   return (
-    <div className="flex min-h-screen bg-gray-100" style={{
-      backgroundImage: `url(${bgImage})`,
-      backgroundSize: 'cover', // Ensures the image covers the entire container
-      backgroundPosition: 'center', // Centers the image
-      backgroundRepeat: 'no-repeat', // Prevents the image from repeating
-    }}>
+    <div
+      className="flex min-h-screen bg-gray-100"
+      style={{
+        backgroundImage: `url(${bgImage})`,
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+      }}
+    >
       {/* Sidebar */}
       <div className="w-1/4 bg-gray-900 text-white p-6 flex flex-col space-y-4 min-h-screen fixed top-0 left-0 mt-6">
-        {/* Sidebar Title */}
-        {/* <h2 className="text-2xl font-bold mb-8 mt-10 justify-between items-center ">User Dashboard</h2> */}
-        <h2 className="text-2xl font-bold mb-8 mt-10 text-center py-4">Welcome to UserDashboard!!</h2>
-        {/* Action Buttons */}
+        <h2 className="text-2xl font-bold mb-8 mt-10 text-center py-4">
+          Welcome to UserDashboard!!
+        </h2>
+
+        {/* Buttons */}
+        {/* <button
+  onClick={() => onViewBookingsChange("book")}
+  className={`py-2 px-4 rounded transition ${
+    viewBookings === "book" ? "bg-blue-500" : "bg-gray-700"
+  }`}
+>
+  Book a Room
+</button> */}
+<button
+  onClick={() => onViewBookingsChange("book")}
+  className={`py-2 px-4 rounded transition ${
+    viewBookings === "book" ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
+  }`}
+>
+  Book a Room
+</button>
         <button
-          onClick={() => onViewBookingsChange(false)}
-          className={`py-2 px-4 rounded transition ${!viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
-            }`}
+          onClick={handleViewCompletedBookings}
+          className={`py-2 px-4 rounded transition ${
+            viewBookings === "completed" ? "bg-blue-500" : "bg-gray-700"
+          }`}
         >
-          Book a Room
+          View Completed Bookings
         </button>
+
         <button
-          onClick={() => onViewBookingsChange(true)}
-          className={`py-2 px-4 rounded transition ${viewBookings ? "bg-blue-500 hover:bg-blue-600" : "bg-gray-700"
-            }`}
+          onClick={handleViewBookedBookings}
+          className={`py-2 px-4 rounded transition ${
+            viewBookings === "booked" ? "bg-blue-500" : "bg-gray-700"
+          }`}
         >
-          View My Bookings
+          View Booked Rooms
         </button>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 ml-[25%] p-6">
-        {/* Header */}
         <div className="w-full bg-gray-800 text-white p-4 flex justify-between items-center shadow-lg fixed top-0 left-0 right-0 z-40">
           <h1 className="text-2xl font-bold">MeetEase</h1>
           <button
@@ -77,79 +720,20 @@ const UserDashboard = ({
           </button>
         </div>
 
-        {/* Main Content Area */}
         <div className="flex-1 p-6 mt-16">
-          {viewBookings ? (
-            // View Bookings Section
-            <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl">
-              <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">My Booking History</h1>
-              <div className="flex justify-center space-x-4 my-4">
-                <button
-                  onClick={handleShowCompletedChange}
-                  className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
-                >
-                  {showCompleted ? "Hide Completed Bookings" : "View Completed Bookings"}
-                </button>
-                <button
-                  onClick={handleViewBookedBookings}
-                  className="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600 transition duration-300"
-                >
-                  View Booked Bookings
-                </button>
-              </div>
-              {showCompleted && (
-                <table className="w-full border-collapse border border-gray-300 mt-4">
-                  <thead>
-                    <tr className="bg-gray-200">
-                      <th className="border p-2">Room Name</th>
-                      <th className="border p-2">Date</th>
-                      <th className="border p-2">Start Time</th>
-                      <th className="border p-2">End Time</th>
-                      <th className="border p-2">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {/* {completedBookings
-                      .filter((booking) => (booking.status === "COMPLETED" ||( booking.status == "BOOKED" && booking.endTime < new Date(Date.now()).toISOString().slice(0, 19))
-                      .map((booking) => (
-                        <tr key={booking.id} className="text-center">
-                          <td className="border p-2">{booking.roomName}</td>
-                          <td className="border p-2">{booking.startTime.split("T")[0]}</td>
-                          <td className="border p-2">{booking.startTime.split("T")[1]}</td>
-                          <td className="border p-2">{booking.endTime.split("T")[1]}</td>
-                          <td className="border p-2 bg-green-500 text-white">{booking.status}</td>
-                        </tr>
-                      ))} */}
-                    {completedBookings
-                      .filter(
-                        (booking) =>
-                          booking.status === "COMPLETED" ||
-                          (booking.status === "BOOKED" &&
-                            booking.endTime < new Date().toISOString().slice(0, 19))
-                      )
-                      .map((booking) => (
-                        <tr key={booking.id} className="text-center">
-                          <td className="border p-2">{booking.roomName}</td>
-                          <td className="border p-2">{booking.startTime.split("T")[0]}</td>
-                          <td className="border p-2">{booking.startTime.split("T")[1]}</td>
-                          <td className="border p-2">{booking.endTime.split("T")[1]}</td>
-                          <td className="border p-2 bg-green-500 text-white">COMPLETED</td>
-                        </tr>
-                      ))}
-                  </tbody>
-                </table>
-              )}
-            </div>
-          ) : (
-            // Book a Room Section
+          {/* Show Book a Room Form by Default */}
+          {viewBookings === "book" && (
             <div className="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-2xl">
-              <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">Book a Room</h1>
+              <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                Book a Room
+              </h1>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Calendar Section */}
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <FaCalendarAlt className="text-2xl text-blue-500" />
-                    <h2 className="text-xl font-semibold text-gray-700">Select Date</h2>
+                    <h2 className="text-xl font-semibold text-gray-700">
+                      Select Date
+                    </h2>
                   </div>
                   <DatePicker
                     selected={selectedDate}
@@ -161,15 +745,18 @@ const UserDashboard = ({
                   />
                 </div>
 
-                {/* Time Slot Section */}
                 <div className="space-y-6">
                   <div className="flex items-center space-x-4">
                     <FaClock className="text-2xl text-blue-500" />
-                    <h2 className="text-xl font-semibold text-gray-700">Select Time Slot</h2>
+                    <h2 className="text-xl font-semibold text-gray-700">
+                      Select Time Slot
+                    </h2>
                   </div>
                   <div className="space-y-4">
                     <div className="flex flex-col space-y-2">
-                      <label className="text-gray-600 font-medium">Start Time</label>
+                      <label className="text-gray-600 font-medium">
+                        Start Time
+                      </label>
                       <input
                         type="time"
                         value={startTime}
@@ -178,7 +765,9 @@ const UserDashboard = ({
                       />
                     </div>
                     <div className="flex flex-col space-y-2">
-                      <label className="text-gray-600 font-medium">End Time</label>
+                      <label className="text-gray-600 font-medium">
+                        End Time
+                      </label>
                       <input
                         type="time"
                         step="any"
@@ -191,7 +780,6 @@ const UserDashboard = ({
                 </div>
               </div>
 
-              {/* Submit Button */}
               <div className="mt-8 flex justify-center">
                 <button
                   onClick={onFetchAvailableRooms}
@@ -202,6 +790,45 @@ const UserDashboard = ({
               </div>
             </div>
           )}
+
+          {/* Show Completed Bookings */}
+          {viewBookings === "completed" && (
+            <div className="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-xl">
+              <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
+                Completed Bookings
+              </h1>
+              <table className="w-full border-collapse border border-gray-300 mt-4">
+                <thead>
+                  <tr className="bg-gray-200">
+                    <th className="border p-2">Room Name</th>
+                    <th className="border p-2">Date</th>
+                    <th className="border p-2">Start Time</th>
+                    <th className="border p-2">End Time</th>
+                    <th className="border p-2">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {completedBookings.map((booking) => (
+                    <tr key={booking.id} className="text-center">
+                      <td className="border p-2">{booking.roomName}</td>
+                      <td className="border p-2">
+                        {booking.startTime.split("T")[0]}
+                      </td>
+                      <td className="border p-2">
+                        {booking.startTime.split("T")[1]}
+                      </td>
+                      <td className="border p-2">
+                        {booking.endTime.split("T")[1]}
+                      </td>
+                      <td className="border p-2 bg-green-500 text-white">
+                        COMPLETED
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
         </div>
       </div>
     </div>
@@ -209,3 +836,4 @@ const UserDashboard = ({
 };
 
 export default UserDashboard;
+
